@@ -1,7 +1,12 @@
 import time
 import random
+#### shhh top secret codes!!1!
 staffCode = "abcd"
 adminCode = "1234"
+#### Make it shiny
+def gap():
+    print ("")
+    print ("")
 #### List of books in the libary at the moment
 booksIn = ("The Danish Girl", "Animal Farm", "Coding for dummies", "The Communist Manifesto")
 #### List of books out at the moment
@@ -10,10 +15,11 @@ booksOut = ("Me but as a book")
 ############# People here #######################
 class people(object):
 
-    def __init__(self, username, privLvl, password, nowOut):
+    def __init__(self, username, password, privLvl, nowOut):
         self.username = username
         self.privLvl = 1
         self.password = password
+        
         self.maxOut = privLvl
         self.nowOut = None
 
@@ -26,16 +32,18 @@ class people(object):
             nowOut.append(bookName)
             booksOut.append(bookName)
             booksIn.remove(bookName) #### Check this is right
-
-############################ Hard coded users #########################
-sam = people(username="sam", privLvl=3, password="p@assword", nowOut=[])
-aaron = people("aaron", 2, "boringNpractical",[])
-james = people("james", 1, "memez4godz",[])
-#######################################################################
-
+            
+    def returnbook(self, bookName, privLvl, username, nowOut):
+       print("something here")
 ############################################
 def start():
-    print ("Welcome to the Library!")
+    global name
+    global pword
+    whoopsie = 0
+    print ("@-----------------------@")
+    print ("|Welcome to the Library!|")
+    print ("@-----------------------@")
+    gap()
     loopIt = True
     while loopIt == True:
         print ("Would you like to login or sign up?")
@@ -45,11 +53,12 @@ def start():
         ########### Sign up ################
         ####################################
         if answer == "sign up":
+            
             loopIt = False
             print ("What is your name?")                        #### username
             name = input ("")
             print ("Enter a password")                          #### password
-            password = input ("")                               #### Privilage escilation
+            pword = input ("")                                  #### Privilage escilation
             print ("Do you have a privilage code? yes or no")
             answer = input ("")
             if answer == "yes":
@@ -70,19 +79,79 @@ def start():
             else:
                 priv = 1
             #### and here we actually create the user
-            (name) = people(username = (name), privLvl = (priv), password = (password), nowOut = []) 
+            (name) = people((name),(pword), (priv), []) #### need to make this global
             print ("Your username is " + (name).username + " and your password is " + (name).password)
 
         ####################################
-        ########### Log in ################
+        ########### Log in #################
         ####################################
         if answer == "login":
-            loopIt = False
-            print ("What is your username?")
-            name = input ("")
-            print ("What is your password?")
-            password = input ("")
+            loopIt = False       
+            while whoopsie < 4:
+                print ("What is your username")
+                name = input ("")
+                print ("What is your password?")
+                pword = input ("")
+                if (pword) == ((name).password):
+                    whoopsie = 0
+                    print ("Thank you for logging in, have a nice day")################## HERE #################################################################################################################################
+                    print ("Your username is " + (name).username + " and your password is " + (name).password)
+                    menu()
+                else:
+                    whoopsie + 1
+                    print ("Incorrect username and password combination")           
+def menu():
+    global name
+    gap()
+    gap()
+    print ("      Menu")
+    print ("")
+    print ("1. Withdraw a book")
+    print ("2. Return a book")
+    print ("3. Admin options")
+    print ("4. Search for a book")
+    print ("5. Log out")
+    gap()
+    test = True
+    while test == True:
+        print ("Please enter 1, 2, 3, 4 or 5")
+        answer = input ("")
+
+        if answer == "1":
+            test = False
+            withdraw()
+        if answer == "2":
+            test = False
+            returnbook()
+
+        if answer == "3":
+            if (name).privLvl == 3:
+                test = False
+                print (" Admin Menu")
+                print ("")
+                print ("1. Add a book")
+                print ("2. Remove a user")
+                gap()
+                print ("Please enter 1 or 2")
+                adminAn = input ("")
+            else:
+                print ("You do not have permission to do this")
+
+        if answer == "4":
+            test = False
+            gap()
+            print ("Search by title or by author")
+            
         
-
-
+    
+    
+############################ Hard coded users #########################
+sam = people("sam", "p@assword", 3, [])
+aaron = people("aaron", 2, "boringNpractical",[])
+james = people("james", 1, "memez4godz",[])
+#######################################################################    
+print (sam.password)
+print (aaron.username)
+gap()
 start()
+menu()
