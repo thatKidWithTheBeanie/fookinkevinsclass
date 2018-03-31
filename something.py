@@ -35,6 +35,7 @@ class people(object):
             
     def returnbook(self, bookName, privLvl, username, nowOut):
        print("something here")
+       
 ############################################
 def start():
     global name
@@ -58,7 +59,7 @@ def start():
             print ("What is your name?")                        #### username
             name = input ("")
             print ("Enter a password")                          #### password
-            pword = input ("")                                  #### Privilage escilation
+            pword = input ("")                                  #### Privilage escelation
             print ("Do you have a privilage code? yes or no")
             answer = input ("")
             if answer == "yes":
@@ -133,16 +134,53 @@ def menu():
                 print ("")
                 print ("1. Add a book")
                 print ("2. Remove a user")
+                print ("3. List all books")
                 gap()
-                print ("Please enter 1 or 2")
+                print ("Please enter 1, 2 or 3")
                 adminAn = input ("")
+                    if adminAn == "1":
+                        gap()
+                        print ("What is the title of the book?")
+                        newbook = input ("")
+                        if book in booksIn or book in booksOut:
+                            print ("This book is already in the library")
+                        else:
+                            x = True
+                            while x == True
+                            print ("Are you sure you want to add " + newbook + " to the library? yes or no")
+                            yorn = input ("")
+                            if yorn = "yes":
+                                x = False
+                                booksIn.append(newbook)
+                                print ("You have added " + newbook + " to the library")
+                                gap()
+                            if yorn = "no":
+                                x = False
+                                print ("Addition cancelled")
+                                gap()
+                    if adminAn == "2":
+                        gap()
+                        print ("What user would you like to remove?")
+                                
+                            
             else:
                 print ("You do not have permission to do this")
 
         if answer == "4":
-            test = False
-            gap()
-            print ("Search by title or by author")
+            if (name).privLvl == 3 or (name).privLvl == 2:
+                test = False
+                gap()
+                print ("What book would you like to search?")
+                search = input ("")
+                if search in booksIn:
+                    print ("This book is available right now")
+                if search in booksOut:
+                    print ("This book is not available right now")
+                else:
+                    print ("This book is not listed")
+                
+                
+                
             
         
     
