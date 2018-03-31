@@ -92,6 +92,8 @@ def start():
                 name = input ("")
                 print ("What is your password?")
                 pword = input ("")
+                print ("Your username is " + (name).username + " and your password is " + (name).password)
+                print (pword)
                 if (pword) == ((name).password):
                     whoopsie = 0
                     print ("Thank you for logging in, have a nice day")################## HERE #################################################################################################################################
